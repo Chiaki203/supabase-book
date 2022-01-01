@@ -1,4 +1,5 @@
 import {createClient} from '@supabase/supabase-js'
+import {Title} from 'src/components/TitleList'
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_KEY;
@@ -23,4 +24,29 @@ export const getTitles = async() => {
     return data
   }
   return [];
+}
+
+export const getSubtitles = async(id:string) => {
+  let {data, error} = await client
+    .from('manga-title')
+    .select('*')
+    .eq('id', id)
+  console.log(data)
+  // return
+  // if (!error && data) {
+  if (data) {
+    const title = data[0];
+    // const {title} = data;
+    ({data, error} = await client
+      .from('manga-subtitle')
+      .select('*')
+      .order('volume', {ascending: true})
+      .eq('title_id', id))
+    if (!error && data) {
+      return {title: title, subtitles: data}
+    } else {
+      return {title: title, subtitles: null}
+    }
+  }
+  return {title: null, subtitles: null}
 }

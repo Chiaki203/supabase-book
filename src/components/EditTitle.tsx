@@ -45,7 +45,7 @@ export const EditTitle = (props:Props) => {
   }, [title, props, author, closeModal])
   const handleRemove = useCallback(async() => {
     let {error} = await client
-      .from('manga-title')
+      .from('manga-subtitle')
       .delete()
       .eq('id', props.title.id)
     if (error) {

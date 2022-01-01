@@ -10,7 +10,7 @@ type Props = {
 
 export const AuthLayout = (props:Props) => {
   const {user} = Auth.useUser();
-  console.log(user)
+  // console.log(user)
   return (
     <div className="bg-gray300">
       <div className="container mx-auto grid grid-rows-[auto, 1fr, auto] min-h-screen">
