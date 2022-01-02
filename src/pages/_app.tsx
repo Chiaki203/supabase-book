@@ -7,7 +7,7 @@ import {client} from 'src/libs/supabase'
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('hi')
   const {user} = Auth.useUser();
-  console.log(user)
+  // console.log(user)
   return (
     <Auth.UserContextProvider supabaseClient={client}>
       <AuthLayout>

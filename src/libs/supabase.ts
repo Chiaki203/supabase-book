@@ -31,7 +31,7 @@ export const getSubtitles = async(id:string) => {
     .from('manga-title')
     .select('*')
     .eq('id', id)
-  console.log(data)
+  // console.log(data)
   // return
   // if (!error && data) {
   if (data) {
@@ -49,4 +49,12 @@ export const getSubtitles = async(id:string) => {
     }
   }
   return {title: null, subtitles: null}
+}
+
+export const getProfile = async() => {
+  const {data, error} = await client.from('profile').select('*');
+  if (!error && data) {
+    return data[0];
+  }
+  return null;
 }
